@@ -13,6 +13,32 @@ model User {
   username String @unique
   password String
 
+  preferences Preferences?
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+model Preferences {
+  id String @id @default(cuid())
+
+  currency     Currency
+  timezone     Timezone
+  milliseconds Boolean  @default(false)
+
+  user_id String @unique
+  user    User   @relation(fields: [user_id], references: [id])
+}
+
+enum Timezone {
+  GMT
+  EST
+  PST
+  CET
+}
+
+enum Currency {
+  GBP
+  USD
+  EUR
 }

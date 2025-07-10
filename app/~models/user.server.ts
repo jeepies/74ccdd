@@ -10,6 +10,21 @@ export async function hasUserRegistered(): Promise<boolean> {
   return count === 1;
 }
 
+/**
+ * Get the username
+ * @returns Username, or undefined if user doesn't exist
+ */
+export async function getUsername(): Promise<string | undefined> {
+  if (!hasUserRegistered) return undefined;
+  const user = await prisma.user.findFirst();
+  return user?.username ? user.username : undefined;
+}
+
+/**
+ * Create the user
+ * @param User
+ * @returns
+ */
 export async function createUser({
   username,
   password,
@@ -22,7 +37,7 @@ export async function createUser({
   timezone: 'GMT' | 'EST' | 'PST' | 'CET';
 }) {
   const registered = await hasUserRegistered();
-  if(registered) return;
+  if (registered) return;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await prisma.user.create({

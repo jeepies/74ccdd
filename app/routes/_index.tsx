@@ -1,9 +1,9 @@
-import type { MetaFunction } from '@remix-run/node';
+import { redirect, type LoaderFunctionArgs } from '@remix-run/node';
+import { hasUserRegistered } from '~/~models/user.server';
 
-export const meta: MetaFunction = () => {
-  return [{ title: '74ccdd' }, { name: 'description', content: ':D' }];
-};
+export async function loader({ request }: LoaderFunctionArgs) {
+  const userRegistered = await hasUserRegistered();
 
-export default function Index() {
-  return <></>;
+  if (userRegistered) return redirect('/dashboard/login');
+  return redirect('/dashboard/register');
 }

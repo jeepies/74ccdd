@@ -21,6 +21,8 @@ export async function createUser({
   currency: 'GBP' | 'USD' | 'EUR';
   timezone: 'GMT' | 'EST' | 'PST' | 'CET';
 }) {
+  const registered = await hasUserRegistered();
+  if(registered) return;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await prisma.user.create({

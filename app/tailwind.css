@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 214 13% 15%;
+    --foreground: 210 20% 98%;
+
+    --card: 214 13% 18%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 214 13% 18%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 204 70% 65%;
+    --primary-foreground: 214 13% 15%;
+
+    --secondary: 214 13% 22%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 214 13% 20%;
+    --muted-foreground: 210 10% 60%;
+
+    --accent: 204 70% 65%;
+    --accent-foreground: 214 13% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 13% 25%;
+    --input: 214 13% 25%;
+    --ring: 204 70% 65%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 214 13% 17%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 204 70% 65%;
+    --sidebar-primary-foreground: 214 13% 15%;
+    --sidebar-accent: 214 13% 22%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 214 13% 25%;
+    --sidebar-ring: 204 70% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
